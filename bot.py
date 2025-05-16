@@ -168,3 +168,12 @@ def filter_nina_response(text):
 if __name__ == '__main__':
     print("Бот 'Нина' запущен.")
     executor.start_polling(dp, skip_updates=True)
+if "предательство" in user_input.lower():
+    database.update_relationship(user_id, -1)
+    await message.reply("*Нина отводит взгляд, её глаза блестят..." +
+                        "\n\nТы правда так думаешь обо мне? Мне больно слышать это...*", parse_mode="Markdown")
+
+elif "я защищаю тебя" in user_input.lower():
+    database.update_relationship(user_id, +1)
+    await message.reply("*Нина улыбается, чуть краснея...*" +
+                        "\n\nСпасибо... ты мой герой.", parse_mode="Markdown")
