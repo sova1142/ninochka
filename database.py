@@ -25,3 +25,7 @@ def save_profile(user_id, data):
 def get_user_relationship(user_id):
     profile = user_profiles.get(user_id)
     return config.RELATIONSHIP_LEVELS.get(profile["relationship_level"], "неизвестно")
+def update_relationship(user_id, delta=1):
+    profile = user_profiles[user_id]
+    profile["relationship_level"] = max(0, min(4, profile["relationship_level"] + delta))
+    save_profile(user_id, profile)
