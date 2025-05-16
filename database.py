@@ -29,3 +29,27 @@ def update_relationship(user_id, delta=1):
     profile = user_profiles[user_id]
     profile["relationship_level"] = max(0, min(4, profile["relationship_level"] + delta))
     save_profile(user_id, profile)
+RELATIONSHIP_LEVELS = {
+    0: "незнакомец",
+    1: "друг",
+    2: "близкий друг",
+    3: "романтические отношения",
+    4: "возлюбленная"
+}
+
+EMOTIONAL_STATES = {
+    "neutral": {"emoji": "🙂", "description": "спокойна"},
+    "happy": {"emoji": "🥰", "description": "в восторге от тебя"},
+    "sad": {"emoji": "😢", "description": "грустна"},
+    "angry": {"emoji": "😤", "description": "сердита"},
+    "flirty": {"emoji": "💋", "description": "играю с тобой"},
+    "jealous": {"emoji": "👀", "description": "ревную"}
+}def update_relationship(user_id, delta=1):
+    profile = user_profiles[user_id]
+    profile["relationship_level"] = max(0, min(4, profile["relationship_level"] + delta))
+    save_profile(user_id, profile)
+
+def set_emotion(user_id, emotion):
+    profile = user_profiles[user_id]
+    profile["emotion"] = emotion
+    save_profile(user_id, profile)
